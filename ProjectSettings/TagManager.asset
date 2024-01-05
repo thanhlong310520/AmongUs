@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - enemy
+  - player
   layers:
   - Default
   - TransparentFX
@@ -11,9 +13,15 @@ TagManager:
   - 'Player '
   - Water
   - UI
+<<<<<<< HEAD
   - BodyDead
   - Bot
   - Berrier
+=======
+  - Bot
+  - Barrier
+  - BodyDead
+>>>>>>> 2c903704b87ded2309d540d0dc2bc8dcff60c1f7
   - 
   - 
   - 
