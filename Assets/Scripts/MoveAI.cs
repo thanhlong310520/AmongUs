@@ -5,12 +5,15 @@ using UnityEngine.AI;
 
 public class MoveAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     NavMeshAgent agent;
     Animator botAnim;
+    SpriteRenderer botSprite;
     bool isRunning = true;
+
     private void Awake()
     {
+        botSprite = GetComponent<SpriteRenderer>();
         botAnim = GetComponent<Animator>();
         botAnim = GetComponent<Animator>();
         agent = GetComponent<NavMeshAgent>();
@@ -33,7 +36,17 @@ public class MoveAI : MonoBehaviour
         }
         else
         {
+            //move
             agent.SetDestination(target.position);
+            //flip
+            if ((target.position.x - this.transform.position.x) < 0f)
+            {
+                botSprite.flipX = true;
+            }
+            else
+            {
+                botSprite.flipX = false;
+            }
         }
 
     }
