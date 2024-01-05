@@ -7,15 +7,18 @@ public class PlayerMovement : MonoBehaviour
 {
     Vector2 moveVector;
     [SerializeField] private float moveSpeed;
-    /*[SerializeField] private Rigidbody2D rigid;
-    [SerializeField] private PlayerInput playerInput;*/
-    bool isFacingRight = true;
+    [SerializeField] private Rigidbody2D rigid;
+    bool isFacingRight = false;
     [SerializeField] bool isMove = true;
+    private void Awake()
+    {
+        isFacingRight = false;
+    }
     public void InputPlayer(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (isMove)
         {
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+
     void Flip()
     {
         isFacingRight = !isFacingRight;
