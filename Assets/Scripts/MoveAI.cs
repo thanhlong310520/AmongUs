@@ -5,19 +5,24 @@ using UnityEngine.AI;
 
 public class MoveAI : MonoBehaviour
 {
-    [SerializeField] Transform target;
+    Transform target;
     NavMeshAgent agent;
     Animator botAnim;
+    SpriteRenderer botSprite;
     bool isRunning = true;
+
     private void Awake()
     {
-        ChangerTarget();
+        botSprite = GetComponent<SpriteRenderer>();
+        botAnim = GetComponent<Animator>();
+        botAnim = GetComponent<Animator>();
+        agent = GetComponent<NavMeshAgent>();
     }
     private void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        ChangerTarget();
     }
 
     private void Update()
@@ -26,11 +31,22 @@ public class MoveAI : MonoBehaviour
         if ((target.position.x - this.transform.position.x) < 0.1f && (target.position.y - this.transform.position.y) < 0.1f)
         {
             isRunning = false;
+            botAnim.SetBool("isRun", false);
             StartCoroutine(UpdateTask());
         }
         else
         {
+            //move
             agent.SetDestination(target.position);
+            //flip
+            if ((target.position.x - this.transform.position.x) < 0f)
+            {
+                botSprite.flipX = true;
+            }
+            else
+            {
+                botSprite.flipX = false;
+            }
         }
 
     }
@@ -53,6 +69,7 @@ public class MoveAI : MonoBehaviour
     private void ChangerTarget()
     {
         isRunning = true;
+        botAnim.SetBool("isRun", true);
         int i = Random.Range(0, 10);
         target = GameManager.Instance.AllTranform[i];
     }
