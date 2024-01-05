@@ -5,24 +5,21 @@ using UnityEngine;
 
 public class BotBodyDetection : MonoBehaviour
 {
-    public BotCtrl botCtrl;
     public float radius = 1f;
     public float timeCheck = 0.5f;
     public LayerMask botLayer;
     public LayerMask barrierLayer;
     public LayerMask bodyDeadLayer;
 
-    bool isDetected = false;
-
 
     private void Update()
     {
-        if (isDetected || botCtrl.isDead) return;
+        if (GameManager.Instance.isDetectedBodyDead) return;
 
         var listBodyDead = CheckObjAround(bodyDeadLayer);
         if (listBodyDead.Count > 0)
         {
-            isDetected = true;
+            GameManager.Instance.isDetectedBodyDead = true;
             HandleAfterDetectBody();
         }
     }

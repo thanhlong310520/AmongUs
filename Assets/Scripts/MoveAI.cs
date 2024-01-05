@@ -27,7 +27,7 @@ public class MoveAI : MonoBehaviour
 
     private void Update()
     {
-        if (!isRunning) return;
+        if (!isRunning || GameManager.Instance.isDetectedBodyDead) return;
         if ((target.position.x - this.transform.position.x) < 0.1f && (target.position.y - this.transform.position.y) < 0.1f)
         {
             isRunning = false;
