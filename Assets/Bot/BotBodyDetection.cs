@@ -5,27 +5,25 @@ using UnityEngine;
 
 public class BotBodyDetection : MonoBehaviour
 {
-    public BotCtrl botCtrl;
     public float radius = 1f;
     public float timeCheck = 0.5f;
     public LayerMask botLayer;
     public LayerMask barrierLayer;
     public LayerMask bodyDeadLayer;
 
-    bool isDetected = false;
-    
 
     private void Update()
     {
-        if (isDetected) return;
+        if (GameManager.Instance.isDetectedBodyDead) return;
 
-        var listBodyDead = CheckObjAround(bodyDeadLayer);  
-        if(listBodyDead.Count > 0)
+        var listBodyDead = CheckObjAround(bodyDeadLayer);
+        if (listBodyDead.Count > 0)
         {
-            isDetected = true;
-            Debug.Log("phat hien xac");
+            GameManager.Instance.isDetectedBodyDead = true;
+            HandleAfterDetectBody();
         }
     }
+    
 
     public List<Transform> CheckObjAround(LayerMask targetLayer)
     {
@@ -53,16 +51,20 @@ public class BotBodyDetection : MonoBehaviour
     public void HandleAfterDetectBody()
     {
         Debug.Log("xu ly sau khi phat hien xac");
-        FindPlayer();
+        var player  = FindPlayer();
+        var listBotArount = CheckObjAround(botLayer);
+        Debug.Log(listBotArount.Count);
+
     }
 
-    void FindPlayer()
+    Transform FindPlayer()
     {
         var listPlayer = CheckObjAround(LayerMask.GetMask("Player"));
         if (listPlayer.Count > 0)
         {
-            Debug.Log("Phat hien Player");
+            return listPlayer[0];
         }
+        return null;
     }
 
 

@@ -18,6 +18,17 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public Transform[] AllTranform;
     [SerializeField] public Slider silerTask;
+    [SerializeField] public bool isDetectedBodyDead;
+    [SerializeField] public GameObject bodyDead;
+    private void Start()
+    {
+        ResetRound();
+    }
+
+    public void ResetRound()
+    {
+       isDetectedBodyDead = false;
+    }
 
 
 }
