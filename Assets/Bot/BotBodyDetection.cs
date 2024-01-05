@@ -10,37 +10,20 @@ public class BotBodyDetection : MonoBehaviour
     public float timeCheck = 0.5f;
     public LayerMask botLayer;
     public LayerMask barrierLayer;
-    // Start is called before the first frame update
-    void Start()
-    {
-        StartFindBotAround();
-    }
+    public LayerMask bodyDeadLayer;
 
-    void StartFindBotAround()
-    {
-        StartCoroutine(GetBotAround());
-    }
+    bool isDetected = false;
+    
 
-    IEnumerator GetBotAround()
+    private void Update()
     {
-        while (true)
+        if (isDetected) return;
+
+        var listBodyDead = CheckObjAround(bodyDeadLayer);  
+        if(listBodyDead.Count > 0)
         {
-            if (botCtrl.isDead) break;
-
-            yield return new WaitForSeconds(timeCheck);
-
-            bool isHandle = false;
-            foreach (Transform t in CheckObjAround(botLayer))
-            {
-                Debug.Log(t.name);
-                if (CheckDead(t.GetComponent<BotCtrl>()))
-                {
-                    botCtrl.HandleAfterDetectBody();
-                    isHandle = true;
-                    break;
-                }
-            }
-            if (isHandle) break;
+            isDetected = true;
+            Debug.Log("phat hien xac");
         }
     }
 
@@ -67,10 +50,19 @@ public class BotBodyDetection : MonoBehaviour
         }
         return true;
     }
-    bool CheckDead(BotCtrl targetBot)
+    public void HandleAfterDetectBody()
     {
-        if (targetBot.isDead) return true;        
-        return false;
+        Debug.Log("xu ly sau khi phat hien xac");
+        FindPlayer();
+    }
+
+    void FindPlayer()
+    {
+        var listPlayer = CheckObjAround(LayerMask.GetMask("Player"));
+        if (listPlayer.Count > 0)
+        {
+            Debug.Log("Phat hien Player");
+        }
     }
 
 
