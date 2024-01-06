@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
@@ -10,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D rigid;
     bool isFacingRight = false;
     [SerializeField] bool isMove = true;
+
+    //Other Classes
+    VentsSystem ventsSystem;
+
     private void Awake()
     {
         isFacingRight = false;
@@ -48,4 +53,54 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = new Vector3(1, 1, 1);
         }
     }
+
+    #region Vent Movement Control
+    public void EnterVent(VentsSystem ventsSystem)
+    {
+        this.ventsSystem = ventsSystem;
+        VentEntered();
+        //Animation and sounds
+        //playerAnimator.SetTrigger("Vent");
+        //playerAudioController.StopWalking();
+        //playerAudioController.PlayVent();
+    }
+
+    public void VentEntered()
+    {
+        DisablePlayer();
+
+        ventsSystem.PlayerInVent();
+        rigid.simulated = false;
+        isMove = false;
+    }
+
+    public bool IsInVent()
+    {
+        return GetComponent<Rigidbody2D>().simulated;
+    }
+
+    public void VentExited()
+    {
+        EnablePlayer();
+
+        //sounds
+        //playerAudioController.PlayVent();
+    }
+    void DisablePlayer()
+    {
+        //Color c = playerSpriteRenderer.color;
+        //c.a = 0;
+        //playerSpriteRenderer.color = c;
+        rigid.simulated = false;
+        isMove = false;
+    }
+    void EnablePlayer()
+    {
+        //Color c = playerSpriteRenderer.color;
+        //c.a = 1;
+        //playerSpriteRenderer.color = c;
+        rigid.simulated = true;
+        isMove = true;
+    }
+    #endregion
 }
