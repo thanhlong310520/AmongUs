@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    //Camera System is Simple just follow the Player around
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField] GameObject Target;
+    [SerializeField] float smoothTime = 0.1f;
+    private Vector3 velocity = Vector3.zero;
+    private void FixedUpdate()
     {
+        if (Target != null)
+        {
+            Vector3 newPos = Target.transform.position;
+            newPos.z = -10;
+            transform.position = Vector3.SmoothDamp(transform.position, newPos, ref velocity, smoothTime);
+        }
         
     }
 }

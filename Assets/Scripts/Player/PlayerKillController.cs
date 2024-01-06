@@ -45,7 +45,7 @@ public class PlayerKillController : MonoBehaviour
 
         //if the current Player in range is Alive
 
-        if (playerKillDetector != null && playerKillDetector.isAlive)
+        if (playerKillDetector != null)
             KillButton.interactable = true;
 
 

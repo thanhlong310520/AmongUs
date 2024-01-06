@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class PlayerKillDetector : MonoBehaviour
 {
-    public bool isAlive = true;
-    public Sprite killedsprite;
-
+    public BotBodyDetection botBodyDetection;
     public void Killed()
     {
-        isAlive = false;
-        //GetComponent<Animator>().SetTrigger("Dead");
-        GetComponent<CircleCollider2D>().enabled = false;
-        //GetComponent<AudioSource>().Play();
-        GetComponent<SpriteRenderer>().sprite = killedsprite;
+        var listBotAroud = botBodyDetection.CheckObjAround(botBodyDetection.botLayer);
+        
+        if (listBotAroud.Count > 0)
+        {
+            print("kill player");
+        }
+        SpawnBodyDead();
+        Destroy(gameObject);
+
+    }
+    void SpawnBodyDead()
+    {
+        GameObject body = Instantiate(GameManager.Instance.bodyDead,transform.position,Quaternion.identity);
     }
 }
