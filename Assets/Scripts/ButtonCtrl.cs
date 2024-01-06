@@ -11,6 +11,9 @@ public class ButtonCtrl : MonoBehaviour
 
     [SerializeField] private Button lightBtn;
     [SerializeField] private Button destroyBtn;
+    [SerializeField] Image lightImg;
+    [SerializeField] Image destroyImg;
+    [SerializeField] float coolDown;
     private void Start()
     {
         sabotageBtn.onClick.AddListener(() => SabotageButton());
@@ -31,6 +34,26 @@ public class ButtonCtrl : MonoBehaviour
     }
     void StopEnemy()
     {
-        Debug.Log("aaaa");
+        StartCoroutine(ClickButton());
+    }
+    IEnumerator ClickButton()
+    {
+        lightBtn.interactable = false;
+        lightImg.fillAmount = 0;
+        destroyBtn.interactable = false;
+        destroyImg.fillAmount = 0;
+        float TimeLeft = coolDown;
+        while (TimeLeft != 0)
+        {
+            yield return new WaitForSeconds(1);
+            TimeLeft--;
+            lightImg.fillAmount = 1 - TimeLeft / coolDown;
+            destroyImg.fillAmount = 1 - TimeLeft / coolDown;
+        }
+        lightImg.fillAmount = 1;
+        lightBtn.interactable = true;
+
+        destroyImg.fillAmount = 1;
+        destroyBtn.interactable = true;
     }
 }

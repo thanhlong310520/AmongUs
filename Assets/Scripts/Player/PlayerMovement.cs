@@ -11,6 +11,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerInput playerInput;*/
     bool isFacingRight = true;
     [SerializeField] bool isMove = true;
+    private void Awake()
+    {
+        isFacingRight = false;
+    }
     public void InputPlayer(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();

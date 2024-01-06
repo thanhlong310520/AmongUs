@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1584049392478125669, guid: ee53897393c2d2242bd9ffe6a2799837, type: 3}
+      propertyPath: m_Radius
+      value: 1.92
+      objectReference: {fileID: 0}
     - target: {fileID: 8242286646442951437, guid: ee53897393c2d2242bd9ffe6a2799837, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
@@ -812,7 +816,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1259,7 +1263,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1688,6 +1692,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1584049392478125669, guid: ee53897393c2d2242bd9ffe6a2799837, type: 3}
+      propertyPath: m_Radius
+      value: 1.98
+      objectReference: {fileID: 0}
     - target: {fileID: 8242286646442951437, guid: ee53897393c2d2242bd9ffe6a2799837, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
@@ -1865,6 +1873,9 @@ MonoBehaviour:
   isSabotageActive: 0
   lightBtn: {fileID: 588725686}
   destroyBtn: {fileID: 938306500}
+  lightImg: {fileID: 588725687}
+  destroyImg: {fileID: 938306501}
+  coolDown: 5
 --- !u!1 &1777973760
 GameObject:
   m_ObjectHideFlags: 0
