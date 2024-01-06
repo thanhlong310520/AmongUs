@@ -1,0 +1,353 @@
+{
+"skeleton": {
+	"hash": "lZOo5xllE5w",
+	"spine": "4.2.09-beta",
+	"x": -50.11,
+	"y": 2.75,
+	"width": 112,
+	"height": 131,
+	"images": "",
+	"audio": "D:/Job/112/Art/Anim"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "bone", "parent": "root" },
+	{ "name": "5", "parent": "bone", "x": 4.89, "y": 74.25 },
+	{ "name": "4", "parent": "bone", "x": 4.89, "y": 67.25 },
+	{ "name": "3", "parent": "bone", "x": 5.89, "y": 73.75 },
+	{ "name": "2", "parent": "bone", "x": 4.89, "y": 67.25 },
+	{ "name": "1", "parent": "bone", "x": 4.89, "y": 63.25 }
+],
+"slots": [
+	{ "name": "Ellipse 1226", "bone": "bone", "attachment": "white/Ellipse 1226" },
+	{ "name": "1", "bone": "1", "attachment": "white/1" },
+	{ "name": "2", "bone": "2", "attachment": "white/2" },
+	{ "name": "3", "bone": "3", "attachment": "white/3" },
+	{ "name": "4", "bone": "4", "attachment": "white/4" },
+	{ "name": "5", "bone": "5", "attachment": "white/5" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"Ellipse 1226": {
+				"black/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"blue/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"brown/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"crystal/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"Green/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"Greenjungle/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"Orange/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"pink/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"purple/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"red/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"white/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 },
+				"Yellow/Ellipse 1226": { "x": 2.89, "y": 13.25, "width": 100, "height": 21 }
+			}
+		}
+	},
+	{
+		"name": "black",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "black/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "black/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "black/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "black/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "black/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "blue",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "blue/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "blue/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "blue/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "blue/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "blue/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "brown",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "brown/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "brown/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "brown/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "brown/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "brown/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "crystal",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "crystal/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "crystal/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "crystal/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "crystal/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "crystal/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "green",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "Green/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "Green/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "Green/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "Green/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "Green/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "greenjungle",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "Greenjungle/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "Greenjungle/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "Greenjungle/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "Greenjungle/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "Greenjungle/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "orange",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "Orange/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "Orange/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "Orange/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "Orange/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "Orange/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "pink",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "pink/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "pink/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "pink/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "pink/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "pink/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "purple",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "purple/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "purple/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "purple/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "purple/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "purple/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "red",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "red/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "red/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "red/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "red/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "red/5", "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "white",
+		"attachments": {
+			"1": {
+				"white/1": { "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "width": 96, "height": 119 }
+			}
+		}
+	},
+	{
+		"name": "yellow",
+		"attachments": {
+			"1": {
+				"white/1": { "name": "Yellow/1", "width": 96, "height": 117 }
+			},
+			"2": {
+				"white/2": { "name": "Yellow/2", "width": 96, "height": 117 }
+			},
+			"3": {
+				"white/3": { "name": "Yellow/3", "width": 112, "height": 120 }
+			},
+			"4": {
+				"white/4": { "name": "Yellow/4", "width": 96, "height": 117 }
+			},
+			"5": {
+				"white/5": { "name": "Yellow/5", "width": 96, "height": 119 }
+			}
+		}
+	}
+],
+"animations": {
+	"run": {
+		"slots": {
+			"1": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"2": {
+				"rgba": [
+					{ "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.5333, "color": "ffffff00" }
+				]
+			},
+			"3": {
+				"rgba": [
+					{ "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.1333, "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.5333, "color": "ffffffff" }
+				]
+			},
+			"4": {
+				"rgba": [
+					{ "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.1333, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.2667, "color": "ffffff00" }
+				]
+			},
+			"5": {
+				"rgba": [
+					{ "color": "ffffff00", "curve": "stepped" },
+					{ "time": 0.2667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.4, "color": "ffffff00" }
+				]
+			}
+		}
+	},
+	"stopandlose": {
+		"slots": {
+			"2": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"3": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"4": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				]
+			},
+			"5": {
+				"rgba": [
+					{ "color": "ffffff00" }
+				]
+			}
+		}
+	}
+}
+}
