@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 moveVector;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody2D rigid;
+    [SerializeField] private SpriteRenderer sprite;
     bool isFacingRight = false;
     [SerializeField] bool isMove = true;
 
@@ -88,17 +89,17 @@ public class PlayerMovement : MonoBehaviour
     }
     void DisablePlayer()
     {
-        //Color c = playerSpriteRenderer.color;
-        //c.a = 0;
-        //playerSpriteRenderer.color = c;
+        Color c = sprite.color;
+        c.a = 0;
+        sprite.color = c;
         rigid.simulated = false;
         isMove = false;
     }
     void EnablePlayer()
     {
-        //Color c = playerSpriteRenderer.color;
-        //c.a = 1;
-        //playerSpriteRenderer.color = c;
+        Color c = sprite.color;
+        c.a = 1;
+        sprite.color = c;
         rigid.simulated = true;
         isMove = true;
     }
