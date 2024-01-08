@@ -154,7 +154,7 @@ RectTransform:
   - {fileID: 1667104012}
   - {fileID: 720157725}
   m_Father: {fileID: 107730393}
-  m_RootOrder: 5
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -468,12 +468,12 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 77936941}
   - {fileID: 342810700}
   - {fileID: 1699407304}
   - {fileID: 127870435}
   - {fileID: 870574833}
   - {fileID: 187137092}
-  - {fileID: 77936941}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -514,7 +514,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 107730393}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -907,7 +907,7 @@ RectTransform:
   - {fileID: 592270782}
   - {fileID: 1995415802}
   m_Father: {fileID: 107730393}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -1300,7 +1300,7 @@ RectTransform:
   - {fileID: 136711348}
   - {fileID: 879519428}
   m_Father: {fileID: 107730393}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3763,7 +3763,7 @@ RectTransform:
   m_Children:
   - {fileID: 1342847046}
   m_Father: {fileID: 107730393}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
@@ -7418,7 +7418,7 @@ RectTransform:
   - {fileID: 588725685}
   - {fileID: 938306499}
   m_Father: {fileID: 107730393}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8055,6 +8055,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3.5
   rigid: {fileID: 1777973762}
+  sprite: {fileID: 1777973763}
   isMove: 1
 --- !u!114 &1777973767
 MonoBehaviour:
