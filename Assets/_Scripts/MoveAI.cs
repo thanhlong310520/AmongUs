@@ -14,6 +14,7 @@ public class MoveAI : MonoBehaviour
     SkeletonAnimation anim;
     bool isRunning = true;
     bool isRight = true;
+    bool isCheck = true;
     private string[] aiNames = {
 "Player1", "GamerX", "ProGamer123", "GameMaster", "EpicPlayer",
     "SpeedyGamer", "NoobSlayer", "PixelWarrior", "StarGamer", "VictoryChaser",
@@ -96,8 +97,12 @@ public class MoveAI : MonoBehaviour
     {
         if (collision.tag == "Task")
         {
-            Stop();
-            StartCoroutine(UpdateTask());
+            if (isCheck)
+            {
+                Stop();
+                StartCoroutine(UpdateTask());
+                isCheck = false;
+            }
         }
     }
 
@@ -117,9 +122,12 @@ public class MoveAI : MonoBehaviour
                 GameManager.Instance.silerTask.value = 1f;
             }
             Move();
+            yield return new WaitForSeconds(0.5f);
+            isCheck = true;
         }
 
     }
+
 
 
     private void ChangerTarget()
