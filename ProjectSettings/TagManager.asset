@@ -5,8 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
-  - player
   - Vent
+  - Task
   layers:
   - Default
   - TransparentFX

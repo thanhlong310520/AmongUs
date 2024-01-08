@@ -13,6 +13,7 @@ public class MoveAI : MonoBehaviour
     NavMeshAgent agent;
     SkeletonAnimation anim;
     bool isRunning = true;
+    bool isRight = true;
     private string[] aiNames = {
 "Player1", "GamerX", "ProGamer123", "GameMaster", "EpicPlayer",
     "SpeedyGamer", "NoobSlayer", "PixelWarrior", "StarGamer", "VictoryChaser",
@@ -70,69 +71,95 @@ public class MoveAI : MonoBehaviour
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        anim.initialSkinName = colorBot.ToString();
+        anim.Initialize(true);
+
+        print(colorBot.ToString()); 
         ChangerTarget();
         GameManager.Instance.AIs.Add(this);
+        Move();
     }
 
     private void Update()
     {
-        if (!isRunning || GameManager.Instance.isDetectedBodyDead) return;
-
-        if ((target.position.x - this.transform.position.x) < 0.1f && (target.position.y - this.transform.position.y) < 0.1f)
+        if (agent.velocity.x > 0 && !isRight)
         {
-            //idle
-            isRunning = false;
-            anim.AnimationName = "stopandlose";
-            anim.Initialize(true);
-            //botAnim.SetBool("isRun", false);
-            StartCoroutine(UpdateTask());
+            Flip();
         }
-        else
+        if (agent.velocity.x < 0 && isRight)
         {
-            //move
-            agent.SetDestination(target.position);
-            //flip
-            if ((target.position.x - this.transform.position.x) < 0f)
-            {
-                //botSprite.flipX = true;
-                anim.initialFlipX = false;
-                anim.Initialize(true);
-            }
-            else
-            {
-                //botSprite.flipX = false;
-                anim.initialFlipX = true;
-                anim.Initialize(true);
-            }
+            Flip();
         }
 
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Task")
+        {
+            Stop();
+            StartCoroutine(UpdateTask());
+        }
+    }
+
     IEnumerator UpdateTask()
     {
         yield return new WaitForSeconds(5f);
-
-        ChangerTarget();
-        if (GameManager.Instance.silerTask.value < 1)
+        if (isRunning)
         {
-            GameManager.Instance.silerTask.value += 0.01f;
-        }
-        else
-        {
-            //lose
-            GameManager.Instance.silerTask.value = 1f;
+            ChangerTarget();
+            if (GameManager.Instance.silerTask.value < 1)
+            {
+                GameManager.Instance.silerTask.value += 0.01f;
+            }
+            else
+            {
+                //lose
+                GameManager.Instance.silerTask.value = 1f;
+            }
+            Move();
         }
 
     }
+
+
     private void ChangerTarget()
     {
         isRunning = true;
-        anim.AnimationName = "run";
-        anim.loop = true;
-        anim.Initialize(true);
 
         //botAnim.SetBool("isRun", true);
         int i = Random.Range(0, 10);
         target = GameManager.Instance.AllTranform[i];
+    }
+    void Move()
+    {
+        agent.isStopped = false;
+        agent.SetDestination(target.position);
+
+        anim.AnimationName = "run";
+        anim.loop = true;
+        anim.Initialize(true);
+    }
+    void Stop()
+    {
+        agent.velocity = Vector2.zero;
+        agent.isStopped = true; 
+        anim.AnimationName = "stopandlose";
+        anim.Initialize(true);
+    }
+    void Flip()
+    {
+        if (isRight)
+        {
+            isRight = false;
+            anim.initialFlipX = false;
+            anim.Initialize(true);
+        }
+        else
+        {
+            isRight = true;
+            anim.initialFlipX = true;
+            anim.Initialize(true);
+        }
     }
 
 
