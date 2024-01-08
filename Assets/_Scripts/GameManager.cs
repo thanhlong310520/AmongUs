@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject emerrgencyGO;
     [SerializeField] private GameObject voteGO;
     [SerializeField] private GameObject loseUIGO;
+    [SerializeField] private GameObject winUIGO;
     [SerializeField] private Text textKick;
     [SerializeField] private GameObject imposterSprite;
     [SerializeField] Sprite[] spriteColor;
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     public bool isLose = false;
     private void Start()
     {
+        silerTask.value = 0;
         listBodyDead = new List<Transform>();
         ResetRound();
     }
@@ -85,8 +87,8 @@ public class GameManager : MonoBehaviour
 
             //imposterSprite.GetComponent<Image>().sprite = spriteColor[10];
             //imposterSprite.SetActive(true);
+
             GameOver();
-            //loseUIGO.SetActive(true);
         }
         else
         {
@@ -96,10 +98,6 @@ public class GameManager : MonoBehaviour
 
         }
 
-    }
-    public void GameOver()
-    {
-        loseUIGO.SetActive(true);
     }
     void VoteSytem()
     {
@@ -126,12 +124,28 @@ public class GameManager : MonoBehaviour
                 textKick.text = nameKick + " was ejected";
                 Destroy(AIs[idKick].gameObject);
                 AIs.RemoveAt(idKick);
+                CheckWin();
             }
 
 
 
         }
 
+    }
+    void CheckWin()
+    {
+        if(AIs.Count <= 1)
+        {
+            Win();
+        }
+    }
+    void Win()
+    {
+        winUIGO.SetActive(true);
+    }
+    public void GameOver()
+    {
+        loseUIGO.SetActive(true);
     }
     public void ClearListBodyDead()
     {
@@ -146,6 +160,7 @@ public class GameManager : MonoBehaviour
     {
         var index = AIs.IndexOf(ai);
         AIs.RemoveAt(index);
+        CheckWin() ;
     }
     //BUTTON
     public void GoMenu()
