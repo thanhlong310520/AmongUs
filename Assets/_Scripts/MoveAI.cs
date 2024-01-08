@@ -15,7 +15,6 @@ public class MoveAI : MonoBehaviour
     SkeletonAnimation anim;
     bool isRunning = true;
     bool isRight = true;
-    bool isCheck = true;
     private string[] aiNames = {
 "Player1", "GamerX", "ProGamer123", "GameMaster", "EpicPlayer",
     "SpeedyGamer", "NoobSlayer", "PixelWarrior", "StarGamer", "VictoryChaser",
@@ -103,7 +102,6 @@ public class MoveAI : MonoBehaviour
             {
                 Stop();
                 StartCoroutine(UpdateTask());
-                isCheck = false;
             }
         }
     }
@@ -122,10 +120,11 @@ public class MoveAI : MonoBehaviour
             {
                 //lose
                 GameManager.Instance.silerTask.value = 1f;
+                GameManager.Instance.GameOver();
+
             }
             Move();
             yield return new WaitForSeconds(1f);
-            isCheck = true;
         }
 
     }
@@ -136,7 +135,7 @@ public class MoveAI : MonoBehaviour
         {
             IDBot = 0;
         }
-        else if(colorBot == ColorBot.blue)
+        else if (colorBot == ColorBot.blue)
         {
 
             IDBot = 1;
@@ -187,9 +186,18 @@ public class MoveAI : MonoBehaviour
     {
         isRunning = true;
 
+        while (true)
+        {
+            int i = Random.Range(0, GameManager.Instance.AllTranform.Length);
+            if (target != GameManager.Instance.AllTranform[i])
+            {
+                target = GameManager.Instance.AllTranform[i];
+                break;
+            }
+
+        }
         //botAnim.SetBool("isRun", true);
-        int i = Random.Range(0, 10);
-        target = GameManager.Instance.AllTranform[i];
+
     }
     void Move()
     {
@@ -203,7 +211,7 @@ public class MoveAI : MonoBehaviour
     void Stop()
     {
         agent.velocity = Vector2.zero;
-        agent.isStopped = true; 
+        agent.isStopped = true;
         anim.AnimationName = "stopandlose";
         anim.Initialize(true);
     }

@@ -85,8 +85,8 @@ public class GameManager : MonoBehaviour
 
             //imposterSprite.GetComponent<Image>().sprite = spriteColor[10];
             //imposterSprite.SetActive(true);
-
-            loseUIGO.SetActive(true);
+            GameOver();
+            //loseUIGO.SetActive(true);
         }
         else
         {
@@ -96,6 +96,10 @@ public class GameManager : MonoBehaviour
 
         }
 
+    }
+    public void GameOver()
+    {
+        loseUIGO.SetActive(true);
     }
     void VoteSytem()
     {
