@@ -53,11 +53,32 @@ public class GameManager : MonoBehaviour
         {
             if (i != null)
             {
-                i.gameObject.transform.position = i.FirstTranfrom;
+                i.transform.position = i.FirstTranfrom;
             }
+        }
+        RunAI();
+    }
 
-            /*            print("1" + i.gameObject.transform.position);
-                        print("2" + i.FirstTranfrom.position);*/
+    public void StopAI()
+    {
+        foreach (var i in AIs)
+        {
+            if (i != null)
+            {
+                i.isRunning = false;
+                i.Stop();
+            }
+        }
+    }
+    public void RunAI()
+    {
+        foreach (var i in AIs)
+        {
+            if (i != null)
+            {
+                i.isRunning = true;
+                i.Move();
+            }
         }
     }
     public void Vote()

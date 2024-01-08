@@ -49,7 +49,7 @@ public class UIManager : MonoBehaviour
         SliderEventCoolDown();
         SliderEventSpeed();
         nameString = PlayerPrefs.GetString("name");
-        PlayerPrefs.SetInt("attackRange", (int)attackRangeNumber);
+        PlayerPrefs.SetFloat("attackRange", attackRangeNumber);
         PlayerPrefs.SetInt("coolDown", (int)coolDownNumber);
         PlayerPrefs.SetInt("speed", (int)speedNumber);
         ChooseMap(PlayerPrefs.GetInt("map"));
@@ -61,8 +61,8 @@ public class UIManager : MonoBehaviour
     }
     public void SliderEventAttackRange()
     {
-        attackRangeNumber = Mathf.RoundToInt(attackRange.value * (maxValueRange - minValueRange) + minValueRange);
-        attackRangeTxt.text = attackRangeNumber.ToString();
+        attackRangeNumber = attackRange.value * (maxValueRange - minValueRange) + minValueRange;
+        attackRangeTxt.text = Mathf.RoundToInt(attackRangeNumber * 100).ToString();
     }
     public void SliderEventSpeed()
     {

@@ -53,6 +53,7 @@ public class BotBodyDetection : MonoBehaviour
     public void HandleAfterDetectBody()
     {
         GameManager.Instance.ClearListBodyDead();
+        GameManager.Instance.StopAI();
         var player  = FindPlayer();
         var listBotArount = CheckObjAround(botLayer);
         if (player != null)

@@ -5,13 +5,20 @@ using UnityEngine;
 public class PlayerKillDetector : MonoBehaviour
 {
     public BotBodyDetection botBodyDetection;
+    public CircleCollider2D circleColi;
+    private void OnValidate()
+    {
+        circleColi = GetComponent<CircleCollider2D>();
+    }
+    private void Awake()
+    {
+        circleColi.radius = PlayerPrefs.GetFloat("attackRange");
+    }
     public void Killed()
     {
         GameManager.Instance.RemoveAI(GetComponent<MoveAI>());
         SpawnBodyDead();
         Destroy(gameObject);
-
-
     }
     void SpawnBodyDead()
     {

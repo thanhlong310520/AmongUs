@@ -35,6 +35,7 @@ public class ButtonCtrl : MonoBehaviour
     void StopEnemy()
     {
         StartCoroutine(ClickButton());
+        StartCoroutine(StopAI());
     }
     IEnumerator ClickButton()
     {
@@ -55,5 +56,11 @@ public class ButtonCtrl : MonoBehaviour
 
         destroyImg.fillAmount = 1;
         destroyBtn.interactable = true;
+    }
+    IEnumerator StopAI()
+    {
+        GameManager.Instance.StopAI();
+        yield return new WaitForSeconds(3f);
+        GameManager.Instance.RunAI();
     }
 }
