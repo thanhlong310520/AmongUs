@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     }
 
     [SerializeField] public Transform[] AllTranform;
+    [SerializeField] public List<Transform> listBodyDead;
     [SerializeField] public Slider silerTask;
     [SerializeField] public bool isDetectedBodyDead;
     [SerializeField] public GameObject bodyDead;
@@ -30,21 +31,29 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject voteGO;
     [SerializeField] private GameObject loseUIGO;
     [SerializeField] private Text textKick;
+    [SerializeField] private GameObject imposterSprite;
+    [SerializeField] Sprite[] spriteColor;
     //Bot
     public bool isLose = false;
     private void Start()
     {
+        listBodyDead = new List<Transform>();
         ResetRound();
     }
 
     public void ResetRound()
     {
         //RESET
+        imposterSprite.SetActive(false);
         isDetectedBodyDead = false;
         playerMovement.ResetTransform();
         foreach (var i in AIs)
         {
-            i.gameObject.transform.position = i.FirstTranfrom;
+            if (i != null)
+            {
+                i.gameObject.transform.position = i.FirstTranfrom;
+            }
+
             /*            print("1" + i.gameObject.transform.position);
                         print("2" + i.FirstTranfrom.position);*/
         }
@@ -59,6 +68,7 @@ public class GameManager : MonoBehaviour
         emerrgencyGO.SetActive(true);
         //Vote Kick
         yield return new WaitForSeconds(3f);
+        VoteSytem();
         emerrgencyGO.SetActive(false);
         voteGO.SetActive(true);
         StartCoroutine(DoneVote());
@@ -66,27 +76,68 @@ public class GameManager : MonoBehaviour
     }
     IEnumerator DoneVote()
     {
-        //Done
         yield return new WaitForSeconds(5f);
-
 
         if (isLose)
         {
-            textKick.text = PlayerPrefs.GetString("name") + "was ejected";
-            LoseUI();
+            /*            imposterSprite.SetActive(true);
+                        textKick.text = PlayerPrefs.GetString("name") + "was ejected";*/
+
+            //imposterSprite.GetComponent<Image>().sprite = spriteColor[10];
+            //imposterSprite.SetActive(true);
+
+            loseUIGO.SetActive(true);
         }
         else
         {
+            //done
             ResetRound();
             voteGO.SetActive(false);
+
         }
 
     }
-    void LoseUI()
+    void VoteSytem()
     {
-        //TextLose
-        loseUIGO.SetActive(true);
+        if (isLose)
+        {
+            imposterSprite.SetActive(true);
+            textKick.text = PlayerPrefs.GetString("name") + " was ejected";
+            imposterSprite.GetComponent<Image>().sprite = spriteColor[10];
+        }
+        else
+        {
+            if (Random.value * 100 < 50)
+            {
+                //nokick  
+                textKick.text = "No one was ejected";
+            }
+            else
+            {
+                //kick
+                int idKick = Random.Range(0, AIs.Count);
+                string nameKick = AIs[idKick].NameAI;
+                imposterSprite.GetComponent<Image>().sprite = spriteColor[idKick];
+                imposterSprite.SetActive(true);
+                textKick.text = nameKick + " was ejected";
+                Destroy(AIs[idKick].gameObject);
+                AIs.RemoveAt(idKick);
+            }
+
+
+
+        }
+
     }
+    public void ClearListBodyDead()
+    {
+        foreach (var item in listBodyDead)
+        {
+            Destroy(item.gameObject);
+        }
+        listBodyDead.Clear();
+    }
+
     public void RemoveAI(MoveAI ai)
     {
         var index = AIs.IndexOf(ai);

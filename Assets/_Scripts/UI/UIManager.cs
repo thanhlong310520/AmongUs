@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -52,7 +52,7 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("attackRange", (int)attackRangeNumber);
         PlayerPrefs.SetInt("coolDown", (int)coolDownNumber);
         PlayerPrefs.SetInt("speed", (int)speedNumber);
-
+        ChooseMap(PlayerPrefs.GetInt("map"));
     }
     public void SliderEventCoolDown()
     {
@@ -68,5 +68,11 @@ public class UIManager : MonoBehaviour
     {
         speedNumber = Mathf.RoundToInt(speed.value * (maxValueSpeed - minValueSpeed) + minValueSpeed);
         speedTxt.text = speedNumber.ToString();
+    }
+    void ChooseMap(int index)
+    {
+        int sceneLength = SceneManager.sceneCountInBuildSettings;
+        if (index + 1 > sceneLength) return;
+        SceneManager.LoadScene(index);
     }
 }
