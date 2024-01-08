@@ -13,7 +13,7 @@ public class MoveAI : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     SkeletonAnimation anim;
-    bool isRunning = true;
+    public bool isRunning = true;
     bool isRight = true;
     private string[] aiNames = {
 "Player1", "GamerX", "ProGamer123", "GameMaster", "EpicPlayer",
@@ -108,10 +108,10 @@ public class MoveAI : MonoBehaviour
 
     IEnumerator UpdateTask()
     {
+        ChangerTarget();
         yield return new WaitForSeconds(5f);
         if (isRunning)
         {
-            ChangerTarget();
             if (GameManager.Instance.silerTask.value < 1)
             {
                 GameManager.Instance.silerTask.value += 0.01f;
@@ -199,7 +199,7 @@ public class MoveAI : MonoBehaviour
         //botAnim.SetBool("isRun", true);
 
     }
-    void Move()
+    public void Move()
     {
         agent.isStopped = false;
         agent.SetDestination(target.position);
@@ -208,7 +208,7 @@ public class MoveAI : MonoBehaviour
         anim.loop = true;
         anim.Initialize(true);
     }
-    void Stop()
+    public void Stop()
     {
         agent.velocity = Vector2.zero;
         agent.isStopped = true;
@@ -230,10 +230,6 @@ public class MoveAI : MonoBehaviour
             anim.Initialize(true);
         }
     }
-
-
-
-
 }
 public enum ColorBot
 {

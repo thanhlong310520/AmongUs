@@ -291,8 +291,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da204fdbffc7f6d4aa6082ec769732b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorBot: 1
+  colorBot: 0
   IDBot: 0
+  isRunning: 1
   FirstTranfrom: {x: 0, y: 0, z: 0}
   NameAI: 
   NameAIText: {fileID: 1883642460}
@@ -352,9 +353,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.6081867}
   serializedVersion: 2
-  m_Radius: 1.44
+  m_Radius: 1.9
 --- !u!114 &320136990
 MonoBehaviour:
   m_ObjectHideFlags: 0

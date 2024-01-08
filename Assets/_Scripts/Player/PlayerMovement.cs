@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        moveSpeed = PlayerPrefs.GetInt("speed");
         isFacingRight = true;
         firstPos = transform.position;
         PlayerText.text = PlayerPrefs.GetString("name");

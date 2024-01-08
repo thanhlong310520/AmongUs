@@ -19,6 +19,7 @@ public class PlayerKillController : MonoBehaviour
     void Awake()
     {
         KillButtonCoolDownText.text = "";
+        KillCoolDown = PlayerPrefs.GetInt("coolDown");
         KillButtonImage.fillAmount = 1;
         DisableKilling();
     }
@@ -60,7 +61,7 @@ public class PlayerKillController : MonoBehaviour
     {
         transform.position = playerKillDetector.gameObject.transform.position;
         playerKillDetector.Killed();
-        
+
         //Send notification for the player to be killed
 
 
@@ -77,13 +78,13 @@ public class PlayerKillController : MonoBehaviour
 
         //this.playerKillDetector.Add(playerKillDetector);
 
-        
+
         //if the cooldown is 0
         if (canKill)
         {
             KillButton.interactable = true;
         }
-            
+
 
     }
 
