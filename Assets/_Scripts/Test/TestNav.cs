@@ -59,7 +59,6 @@ public class TestNav : MonoBehaviour
     private void ChangerTarget()
     {
         isRunning = true;
-        botAnim.SetBool("isRun", true);
         while(true)
         {
             int i = Random.Range(0, 10);
@@ -73,16 +72,16 @@ public class TestNav : MonoBehaviour
     }
     void Flip()
     {
-        if (isRight)
-        {
-            isRight = false;
-            botSprite.flipX = true;
-        }
-        else
-        {
-            isRight = true;
-            botSprite.flipX = false;
-        }
+        //if (isRight)
+        //{
+        //    isRight = false;
+        //    botSprite.flipX = true;
+        //}
+        //else
+        //{
+        //    isRight = true;
+        //    botSprite.flipX = false;
+        //}
     }
 
     IEnumerator UpdateTask()
@@ -117,13 +116,11 @@ public class TestNav : MonoBehaviour
     {
         agent.isStopped = false;
         agent.SetDestination(target.position);
-        botAnim.SetBool("isRun", true);
     }
     void Stop()
     {
         agent.velocity = Vector2.zero;
         agent.isStopped = true;
-        botAnim.SetBool("isRun", false);
     }
 
 }

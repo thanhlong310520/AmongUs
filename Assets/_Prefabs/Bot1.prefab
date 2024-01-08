@@ -291,7 +291,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da204fdbffc7f6d4aa6082ec769732b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorBot: 0
+  colorBot: 1
+  IDBot: 0
   FirstTranfrom: {x: 0, y: 0, z: 0}
   NameAI: 
   NameAIText: {fileID: 1883642460}
@@ -415,7 +416,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1989716099
 MonoBehaviour:
@@ -454,6 +455,6 @@ MonoBehaviour:
   disableRenderingOnOverride: 1
   updateTiming: 1
   unscaledTime: 0
-  _animationName: stopandlose
+  _animationName: run
   loop: 1
   timeScale: 1

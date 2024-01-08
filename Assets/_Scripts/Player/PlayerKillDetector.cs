@@ -16,5 +16,6 @@ public class PlayerKillDetector : MonoBehaviour
     void SpawnBodyDead()
     {
         GameObject body = Instantiate(GameManager.Instance.bodyDead,transform.position,Quaternion.identity);
+        GameManager.Instance.listBodyDead.Add(body.transform);
     }
 }

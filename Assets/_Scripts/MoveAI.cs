@@ -9,11 +9,13 @@ using UnityEngine.UI;
 public class MoveAI : MonoBehaviour
 {
     public ColorBot colorBot;
+    public int IDBot;
     Transform target;
     NavMeshAgent agent;
     SkeletonAnimation anim;
     bool isRunning = true;
     bool isRight = true;
+    bool isCheck = true;
     private string[] aiNames = {
 "Player1", "GamerX", "ProGamer123", "GameMaster", "EpicPlayer",
     "SpeedyGamer", "NoobSlayer", "PixelWarrior", "StarGamer", "VictoryChaser",
@@ -66,6 +68,7 @@ public class MoveAI : MonoBehaviour
         int randomNum = Random.Range(0, aiNames.Length);
         NameAI = aiNames[randomNum];
         NameAIText.text = NameAI;
+        CheckId();
     }
     private void Start()
     {
@@ -74,7 +77,7 @@ public class MoveAI : MonoBehaviour
         anim.initialSkinName = colorBot.ToString();
         anim.Initialize(true);
 
-        print(colorBot.ToString()); 
+        //print(colorBot.ToString()); 
         ChangerTarget();
         GameManager.Instance.AIs.Add(this);
         Move();
@@ -96,8 +99,12 @@ public class MoveAI : MonoBehaviour
     {
         if (collision.tag == "Task")
         {
-            Stop();
-            StartCoroutine(UpdateTask());
+            if (target == collision.transform)
+            {
+                Stop();
+                StartCoroutine(UpdateTask());
+                isCheck = false;
+            }
         }
     }
 
@@ -117,11 +124,65 @@ public class MoveAI : MonoBehaviour
                 GameManager.Instance.silerTask.value = 1f;
             }
             Move();
+            yield return new WaitForSeconds(1f);
+            isCheck = true;
         }
 
     }
 
+    void CheckId()
+    {
+        if (colorBot == ColorBot.black)
+        {
+            IDBot = 0;
+        }
+        else if(colorBot == ColorBot.blue)
+        {
 
+            IDBot = 1;
+        }
+        else if (colorBot == ColorBot.brown)
+        {
+
+            IDBot = 2;
+        }
+        else if (colorBot == ColorBot.crystal)
+        {
+
+            IDBot = 3;
+        }
+
+        else if (colorBot == ColorBot.green)
+        {
+
+            IDBot = 4;
+        }
+        else if (colorBot == ColorBot.greenjungle)
+        {
+
+            IDBot = 5;
+        }
+        else if (colorBot == ColorBot.orange)
+        {
+
+            IDBot = 6;
+        }
+        else if (colorBot == ColorBot.pink)
+        {
+
+            IDBot = 7;
+        }
+        else if (colorBot == ColorBot.purple)
+        {
+
+            IDBot = 8;
+        }
+        else
+        {
+
+            IDBot = 9;
+        }
+    }
     private void ChangerTarget()
     {
         isRunning = true;
