@@ -54,7 +54,11 @@ public class BotBodyDetection : MonoBehaviour
     {
         var player  = FindPlayer();
         var listBotArount = CheckObjAround(botLayer);
-
+        if (player != null)
+        {
+            //lose
+            GameManager.Instance.isLose = true;
+        }
         GameManager.Instance.Vote();
 
     }

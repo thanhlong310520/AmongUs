@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] Text PlayerText;
     Vector2 moveVector;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody2D rigid;
-
     bool isFacingRight = false;
     [SerializeField] bool isMove = true;
     [SerializeField] SkeletonAnimation skeleton;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     {
         isFacingRight = true;
         firstPos = transform.position;
+        PlayerText.text = PlayerPrefs.GetString("name");
     }
     private void Start()
     {
