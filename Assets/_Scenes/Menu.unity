@@ -861,7 +861,7 @@ MonoBehaviour:
   attackRange: {fileID: 363199068}
   attackRangeTxt: {fileID: 1222825598}
   minValueRange: 0.2
-  maxValueRange: 2
+  maxValueRange: 5
   coolDown: {fileID: 809922742}
   coolDownTxt: {fileID: 1070657700}
   minValueCoolDown: 1

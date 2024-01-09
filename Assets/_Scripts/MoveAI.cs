@@ -78,7 +78,7 @@ public class MoveAI : MonoBehaviour
 
         //print(colorBot.ToString()); 
         ChangerTarget();
-        GameManager.Instance.AIs.Add(this);
+        //GameManager.Instance.AIs.Add(this);
         Move();
     }
 
