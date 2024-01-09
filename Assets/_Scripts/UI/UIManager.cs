@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         PlayerPrefs.SetInt("coolDown", 6);
         PlayerPrefs.SetInt("speed", 4);
         attackRange.value = 1 / maxValueRange;
-        attackRangeTxt.text = (attackRange.value * 100).ToString();
+        attackRangeTxt.text = "100";
         coolDown.value = 6 / maxValueCoolDown;
         coolDownTxt.text = "6";
         speed.value = 4 / maxValueSpeed;
@@ -58,9 +58,9 @@ public class UIManager : MonoBehaviour
     public void StartBtn()
     {
         NickName();
-        SliderEventAttackRange();
+        /*SliderEventAttackRange();
         SliderEventCoolDown();
-        SliderEventSpeed();
+        SliderEventSpeed();*/
         nameString = PlayerPrefs.GetString("name");
         PlayerPrefs.SetFloat("attackRange", attackRangeNumber);
         PlayerPrefs.SetInt("coolDown", (int)coolDownNumber);

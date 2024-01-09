@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] Text PlayerText;
     Vector2 moveVector;
+    Vector2 moveVectorJoystick;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody2D rigid;
     bool isFacingRight = false;
@@ -32,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
-        isUseVent = false; 
+        isUseVent = false;
         //firstPos = transform.position;
     }
     public void InputPlayer(InputAction.CallbackContext context)
@@ -43,14 +44,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (isMove)
         {
-            moveVector.Normalize();
-            rigid.velocity = moveSpeed * moveVector;
-            //transform.Translate(moveSpeed * moveVector * Time.deltaTime);
-            if (moveVector.x > 0 && isFacingRight)
+            moveVectorJoystick = new Vector2(UltimateJoystick.GetHorizontalAxis("joystick"), UltimateJoystick.GetVerticalAxis("joystick")) * moveSpeed;
+            if (Input.GetButton("Horizontal"))
+            {
+                moveVectorJoystick.x = Input.GetAxisRaw("Horizontal");
+            }
+            if (Input.GetButton("Vertical"))
+            {
+                moveVectorJoystick.y = Input.GetAxisRaw("Vertical");
+            }
+            /*moveVector.Normalize();
+            rigid.velocity = moveSpeed * moveVector;*/
+
+            //rigid.velocity = moveSpeed * moveVectorJoystick;
+            moveVectorJoystick.Normalize();
+            rigid.velocity = moveVectorJoystick * moveSpeed;
+            //transform.Translate(moveSpeed * moveVectorJoystick * Time.deltaTime);
+            if (moveVectorJoystick.x > 0 && isFacingRight)
             {
                 Flip();
             }
-            if (moveVector.x < 0 && !isFacingRight)
+            if (moveVectorJoystick.x < 0 && !isFacingRight)
             {
                 Flip();
             }
@@ -65,7 +79,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DelayAnim()
     {
         yield return new WaitForSeconds(0.1f);
-        if (moveVector != Vector2.zero)
+        if (moveVectorJoystick != Vector2.zero)
         {
             skeleton.AnimationName = "run";
         }
@@ -75,18 +89,13 @@ public class PlayerMovement : MonoBehaviour
     void Flip()
     {
         isFacingRight = !isFacingRight;
-        //transform.Rotate(0, 180, 0);
-        if (moveVector.x < 0)
+        if (moveVectorJoystick.x < 0)
         {
             skeleton.initialFlipX = false;
-            //sprite.flipX = true;
-            //transform.localScale = new Vector3(-1, 1, 1);
         }
         else
         {
             skeleton.initialFlipX = true;
-            //sprite.flipX = false;
-            //transform.localScale = new Vector3(1, 1, 1);
         }
         skeleton.Initialize(true);
     }
