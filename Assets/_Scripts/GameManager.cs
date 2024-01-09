@@ -33,6 +33,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject loseUIGO;
     [SerializeField] private GameObject winUIGO;
     [SerializeField] private Text textKick;
+    [SerializeField] private Text textImposter;
+    [SerializeField] private Text textImposterWin;
     [SerializeField] private GameObject imposterSprite;
     [SerializeField] private RectTransform target;
     [SerializeField] Sprite[] spriteColor;
@@ -171,10 +173,12 @@ public class GameManager : MonoBehaviour
     }
     void Win()
     {
+        textImposterWin.text = PlayerPrefs.GetString("name");
         winUIGO.SetActive(true);
     }
     public void GameOver()
     {
+        textImposter.text = PlayerPrefs.GetString("name");
         loseUIGO.SetActive(true);
     }
     public void ClearListBodyDead()
