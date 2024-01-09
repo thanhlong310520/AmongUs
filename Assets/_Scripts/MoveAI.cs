@@ -137,48 +137,39 @@ public class MoveAI : MonoBehaviour
         }
         else if (colorBot == ColorBot.blue)
         {
-
             IDBot = 1;
         }
         else if (colorBot == ColorBot.brown)
         {
-
             IDBot = 2;
         }
         else if (colorBot == ColorBot.crystal)
         {
-
             IDBot = 3;
         }
 
         else if (colorBot == ColorBot.green)
         {
-
             IDBot = 4;
         }
         else if (colorBot == ColorBot.greenjungle)
         {
-
             IDBot = 5;
         }
         else if (colorBot == ColorBot.orange)
         {
-
             IDBot = 6;
         }
         else if (colorBot == ColorBot.pink)
         {
-
             IDBot = 7;
         }
         else if (colorBot == ColorBot.purple)
         {
-
             IDBot = 8;
         }
         else
         {
-
             IDBot = 9;
         }
     }

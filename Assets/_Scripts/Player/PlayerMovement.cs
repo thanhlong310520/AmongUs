@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
     }
     IEnumerator DelayAnim()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0f);
         if (moveVector != Vector2.zero)
         {
             skeleton.AnimationName = "run";
