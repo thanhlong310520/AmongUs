@@ -11,12 +11,8 @@ public class PlayerCollider : MonoBehaviour
         playerKillController = GetComponent<PlayerKillController>();
         playerMovement = GetComponent<PlayerMovement>();
     }
-    private void OnTriggerStay2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "enemy")
-        {
-            playerKillController.EnableKilling(collision.GetComponent<PlayerKillDetector>());
-        }
         if (collision.gameObject.tag == "Vent")
         {
             //If the Imposter is activated skip
@@ -26,6 +22,14 @@ public class PlayerCollider : MonoBehaviour
                 collision.gameObject.GetComponent<Vent>().EnableVent(playerMovement);
             }
         }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "enemy")
+        {
+            playerKillController.EnableKilling(collision.GetComponent<PlayerKillDetector>());
+        }
+        
     }
     private void OnTriggerExit2D(Collider2D collision)
     {

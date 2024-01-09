@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,11 +34,14 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject winUIGO;
     [SerializeField] private Text textKick;
     [SerializeField] private GameObject imposterSprite;
+    [SerializeField] private RectTransform target;
     [SerializeField] Sprite[] spriteColor;
     //Bot
     public bool isLose = false;
+    Vector3 firstTransformImposterSprite;
     private void Start()
     {
+        firstTransformImposterSprite = imposterSprite.GetComponent<RectTransform>().position;
         silerTask.value = 0;
         listBodyDead = new List<Transform>();
         ResetRound();
@@ -57,6 +61,10 @@ public class GameManager : MonoBehaviour
             }
         }
         RunAI();
+
+        imposterSprite.GetComponent<RectTransform>().position = firstTransformImposterSprite;
+        imposterSprite.transform.rotation = Quaternion.Euler(0, 0, 0);
+        StartCoroutine(PlayerKillController.Instance.ResetKill());
     }
 
     public void StopAI()
@@ -94,6 +102,7 @@ public class GameManager : MonoBehaviour
         VoteSytem();
         emerrgencyGO.SetActive(false);
         voteGO.SetActive(true);
+        MoveSpriteInVote();
         StartCoroutine(DoneVote());
 
     }
@@ -155,7 +164,7 @@ public class GameManager : MonoBehaviour
     }
     void CheckWin()
     {
-        if(AIs.Count <= 1)
+        if (AIs.Count <= 1)
         {
             Win();
         }
@@ -181,7 +190,14 @@ public class GameManager : MonoBehaviour
     {
         var index = AIs.IndexOf(ai);
         AIs.RemoveAt(index);
-        CheckWin() ;
+        CheckWin();
+    }
+
+    //Dotween
+    void MoveSpriteInVote()
+    {
+        imposterSprite.GetComponent<RectTransform>().DOMove(target.position, 5);
+        imposterSprite.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 180), 5);
     }
     //BUTTON
     public void GoMenu()

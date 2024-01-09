@@ -31,15 +31,28 @@ public class UIManager : MonoBehaviour
     {
         PlayerPrefs.SetString("name", "player");
     }
+
     private void Start()
     {
-        SliderEventAttackRange();
-        SliderEventCoolDown();
-        SliderEventSpeed();
+        SetDefault();
+
+    }
+    void SetDefault()
+    {
+        PlayerPrefs.SetFloat("attackRange", 1);
+        PlayerPrefs.SetInt("coolDown", 6);
+        PlayerPrefs.SetInt("speed", 4);
+        attackRange.value = 1 / maxValueRange;
+        attackRangeTxt.text = (attackRange.value * 100).ToString();
+        coolDown.value = 6 / maxValueCoolDown;
+        coolDownTxt.text = "6";
+        speed.value = 4 / maxValueSpeed;
+        speedTxt.text = "4";
+
     }
     void NickName()
     {
-        PlayerPrefs.SetString("name", $"{ nickName.text}");
+        PlayerPrefs.SetString("name", $"{nickName.text}");
     }
 
     public void StartBtn()

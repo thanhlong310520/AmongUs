@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
-public class PlayerKillController : MonoBehaviour
+public class PlayerKillController : Singleton<PlayerKillController>
 {
     //The UI button with the Overlay color
     [SerializeField] Button KillButton;
@@ -22,9 +23,9 @@ public class PlayerKillController : MonoBehaviour
         KillCoolDown = PlayerPrefs.GetInt("coolDown");
         KillButtonImage.fillAmount = 1;
         DisableKilling();
+        StartCoroutine(ResetKill());
     }
-
-    IEnumerator ResetKill()
+    public IEnumerator ResetKill()
     {
         //Reset the Variables
         canKill = false;
@@ -42,6 +43,10 @@ public class PlayerKillController : MonoBehaviour
             //Change the Time Text and the Image Fill Amount
             KillButtonCoolDownText.text = "" + TimeLeft;
             KillButtonImage.fillAmount = 1 - TimeLeft / KillCoolDown;
+            if (GameManager.Instance.isDetectedBodyDead)
+            {
+                TimeLeft = 0;
+            }
         }
 
         //if the current Player in range is Alive
