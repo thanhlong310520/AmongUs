@@ -1,3 +1,4 @@
+using SoundSystem;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] Vector2 firstPos;
 
     bool isUseVent;
+    bool isSound = false;
 
     //Other Classes
     VentsSystem ventsSystem;
@@ -30,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         isFacingRight = true;
         firstPos = transform.position;
         PlayerText.text = PlayerPrefs.GetString("name");
+        SoundManager.Play("Run");
     }
     private void Start()
     {
@@ -53,13 +56,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 moveVectorJoystick.y = Input.GetAxisRaw("Vertical");
             }
-            /*moveVector.Normalize();
-            rigid.velocity = moveSpeed * moveVector;*/
-
-            //rigid.velocity = moveSpeed * moveVectorJoystick;
             moveVectorJoystick.Normalize();
             rigid.velocity = moveVectorJoystick * moveSpeed;
-            //transform.Translate(moveSpeed * moveVectorJoystick * Time.deltaTime);
             if (moveVectorJoystick.x > 0 && isFacingRight)
             {
                 Flip();
@@ -68,22 +66,38 @@ public class PlayerMovement : MonoBehaviour
             {
                 Flip();
             }
-            /*if (moveVector != Vector2.zero)
-            {
-                skeleton.AnimationName = "run";
-            }
-            else skeleton.AnimationName = "stopandlose";*/
+            //Music
             StartCoroutine(DelayAnim());
         }
     }
     IEnumerator DelayAnim()
     {
         yield return new WaitForSeconds(0.1f);
+
         if (moveVectorJoystick != Vector2.zero)
         {
             skeleton.AnimationName = "run";
+
+            if (!isSound && !GameManager.Instance.isLose)
+            {
+                isSound = true;
+                SoundManager.PlayContinue("Run");
+            }
+
+
+
         }
-        else skeleton.AnimationName = "stopandlose";
+        else
+        {
+            SoundManager.Pause("Run");
+
+            skeleton.AnimationName = "stopandlose";
+            if (isSound && !GameManager.Instance.isLose)
+            {
+                isSound = false;
+                SoundManager.PlayContinue("Run");
+            }
+        }
     }
 
     void Flip()

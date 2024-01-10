@@ -60,8 +60,8 @@ public class MoveAI : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<SkeletonAnimation>();
         agent = GetComponent<NavMeshAgent>();
+        anim = GetComponentInChildren<SkeletonAnimation>();
         FirstTranfrom = new Vector3(this.gameObject.transform.position.x, this.gameObject.transform.position.y, 0);
         //NAME AI
         int randomNum = Random.Range(0, aiNames.Length);
@@ -71,6 +71,7 @@ public class MoveAI : MonoBehaviour
     }
     private void Start()
     {
+
         agent.updateRotation = false;
         agent.updateUpAxis = false;
         anim.initialSkinName = colorBot.ToString();
@@ -201,6 +202,7 @@ public class MoveAI : MonoBehaviour
     }
     public void Move()
     {
+        if (target == null) return;
         agent.isStopped = false;
         agent.SetDestination(target.position);
 

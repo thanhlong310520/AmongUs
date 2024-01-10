@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using TMPro;
+using SoundSystem;
 
 public class ClickChoseLevel : MonoBehaviour
 {
@@ -25,6 +26,8 @@ public class ClickChoseLevel : MonoBehaviour
 
     void NextButton()
     {
+        //Music
+        SoundManager.Play("Click");
         if (index >= maxMap - 1)
         {
             index = 0;
@@ -38,6 +41,8 @@ public class ClickChoseLevel : MonoBehaviour
     }
     void ForwardButton()
     {
+        //Music
+        SoundManager.Play("Click");
         if (index <= 0)
         {
             index = maxMap - 1;

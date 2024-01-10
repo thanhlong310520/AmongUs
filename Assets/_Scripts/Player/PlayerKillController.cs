@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using Unity.VisualScripting;
+using SoundSystem;
 
 public class PlayerKillController : Singleton<PlayerKillController>
 {
@@ -64,6 +65,8 @@ public class PlayerKillController : Singleton<PlayerKillController>
     //Called when the kill button is pressed
     public void Kill()
     {
+        //Music
+        SoundManager.Play("Kill");
         transform.position = playerKillDetector.gameObject.transform.position;
         playerKillDetector.Killed();
 

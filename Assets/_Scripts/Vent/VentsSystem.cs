@@ -1,3 +1,4 @@
+using SoundSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -63,6 +64,8 @@ public class VentsSystem : MonoBehaviour
     //Called when Player presses the vent button
     public void EnterIntoTheVentSystem()
     {
+        //Music
+        SoundManager.Play("Vent");
         //Make the Player Enter the Vent
         playerMovement.EnterVent(this);
         playerMovement.gameObject.transform.position = connectedVents[CurrentVentID].GetPos();
@@ -86,6 +89,8 @@ public class VentsSystem : MonoBehaviour
     //Called when Player presses the vent button when he's inside
     public void ExitTheVentSystem()
     {
+        //Music
+        SoundManager.Play("Vent");
         //Remove the Arrows
         arrowsManager.ResetArrows();
 
@@ -101,6 +106,8 @@ public class VentsSystem : MonoBehaviour
     //Called when pressing the Arrows
     public void MoveToVent(int ventID)
     {
+        //Music
+        SoundManager.Play("ArrowVent");
         //Set the Current Vent ID to the new Vent ID
         CurrentVentID = ventID;
 

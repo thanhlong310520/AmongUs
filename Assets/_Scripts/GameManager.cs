@@ -1,4 +1,5 @@
 using DG.Tweening;
+using SoundSystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -98,6 +99,8 @@ public class GameManager : MonoBehaviour
     IEnumerator ReturnGame()
     {
         //Emergency
+        //Music
+        SoundManager.Play("Report");
         emerrgencyGO.SetActive(true);
         //Vote Kick
         yield return new WaitForSeconds(3f);
@@ -166,6 +169,7 @@ public class GameManager : MonoBehaviour
     }
     void CheckWin()
     {
+        print("AI count : " + AIs.Count);
         if (AIs.Count <= 1)
         {
             Win();
@@ -173,11 +177,17 @@ public class GameManager : MonoBehaviour
     }
     void Win()
     {
+        //Music
+        SoundManager.Play("Victory");
         textImposterWin.text = PlayerPrefs.GetString("name");
         winUIGO.SetActive(true);
     }
     public void GameOver()
     {
+        //Music
+        SoundManager.Play("Defeat");
+        SoundManager.Stop("Run");
+
         textImposter.text = PlayerPrefs.GetString("name");
         loseUIGO.SetActive(true);
     }

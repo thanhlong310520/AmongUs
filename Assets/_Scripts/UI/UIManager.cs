@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using SoundSystem;
 
 public class UIManager : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class UIManager : MonoBehaviour
     private void Start()
     {
         SetDefault();
-
+        //Audio
+        SoundManager.Play("Background");
     }
     void SetDefault()
     {
@@ -57,6 +59,8 @@ public class UIManager : MonoBehaviour
 
     public void StartBtn()
     {
+        //Music
+        SoundManager.Play("Click");
         NickName();
         /*SliderEventAttackRange();
         SliderEventCoolDown();
@@ -85,7 +89,7 @@ public class UIManager : MonoBehaviour
     void ChooseMap(int index)
     {
         int sceneLength = SceneManager.sceneCountInBuildSettings;
-        if (index + 1 > sceneLength) return;
-        SceneManager.LoadScene(index);
+        if (index + 2 > sceneLength) return;
+        SceneManager.LoadScene(index + 1);
     }
 }
