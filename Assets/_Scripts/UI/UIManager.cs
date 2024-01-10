@@ -5,9 +5,12 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using SoundSystem;
+using Unity.VisualScripting;
+using System.Runtime.InteropServices;
 
 public class UIManager : MonoBehaviour
 {
+
     [SerializeField] private TMP_Text nickName;
     private string nameString;
 
@@ -35,10 +38,12 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
+
         SetDefault();
         //Audio
         SoundManager.Play("Background");
     }
+
     void SetDefault()
     {
         PlayerPrefs.SetFloat("attackRange", 1);
@@ -73,6 +78,7 @@ public class UIManager : MonoBehaviour
     }
     public void SliderEventCoolDown()
     {
+        //SoundManager.Play("Click");
         coolDownNumber = Mathf.RoundToInt(coolDown.value * (maxValueCoolDown - minValueCoolDown) + minValueCoolDown);
         coolDownTxt.text = coolDownNumber.ToString();
     }
@@ -88,8 +94,37 @@ public class UIManager : MonoBehaviour
     }
     void ChooseMap(int index)
     {
+        print("id"+ index);
         int sceneLength = SceneManager.sceneCountInBuildSettings;
-        if (index + 2 > sceneLength) return;
-        SceneManager.LoadScene(index + 1);
+/*        if (index + 3 > sceneLength) return;*/
+        if (index == 3)
+        {
+            print("testlink");
+            Link();
+        }
+        else
+        {
+            SceneManager.LoadScene(index + 1);
+            //SendAds("start");
+            LogEvent(FirebaseEventType.EVENT_STARTGAME);
+        }
+
     }
+    void Link()
+    {
+        string url = GetLinkApk();
+        Debug.Log(url);
+        Application.OpenURL(url);
+    }
+
+    [DllImport("__Internal")]
+    private static extern string GetLinkApk();
+    //Ads
+    [DllImport("__Internal")]
+    private static extern void SendAds(string type);
+    [DllImport("__Internal")]
+    private static extern void LogEvent(string type);
+
+
+
 }

@@ -2,6 +2,7 @@ using DG.Tweening;
 using SoundSystem;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Sprite[] spriteColor;
     //Bot
     public bool isLose = false;
+    public bool isVote = false;
     Vector3 firstTransformImposterSprite;
     private void Start()
     {
@@ -94,6 +96,8 @@ public class GameManager : MonoBehaviour
     }
     public void Vote()
     {
+        SoundManager.Stop("Run");
+        isVote = true;
         StartCoroutine(ReturnGame());
     }
     IEnumerator ReturnGame()
@@ -130,6 +134,7 @@ public class GameManager : MonoBehaviour
             //done
             ResetRound();
             voteGO.SetActive(false);
+            CheckWin();
 
         }
 
@@ -148,6 +153,7 @@ public class GameManager : MonoBehaviour
             {
                 //nokick  
                 textKick.text = "No one was ejected";
+                imposterSprite.SetActive(false);
             }
             else
             {
@@ -159,7 +165,7 @@ public class GameManager : MonoBehaviour
                 textKick.text = nameKick + " was ejected";
                 Destroy(AIs[idKick].gameObject);
                 AIs.RemoveAt(idKick);
-                CheckWin();
+
             }
 
 
@@ -174,6 +180,7 @@ public class GameManager : MonoBehaviour
         {
             Win();
         }
+        isVote = false;
     }
     void Win()
     {
@@ -186,7 +193,7 @@ public class GameManager : MonoBehaviour
     {
         //Music
         SoundManager.Play("Defeat");
-        SoundManager.Stop("Run");
+
 
         textImposter.text = PlayerPrefs.GetString("name");
         loseUIGO.SetActive(true);
@@ -210,12 +217,13 @@ public class GameManager : MonoBehaviour
     //Dotween
     void MoveSpriteInVote()
     {
-        imposterSprite.GetComponent<RectTransform>().DOMove(target.position, 5);
-        imposterSprite.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 180), 5);
+        imposterSprite.GetComponent<RectTransform>().DOMove(target.position, 4);
+        imposterSprite.GetComponent<RectTransform>().DORotate(new Vector3(0, 0, 180), 4);
     }
     //BUTTON
     public void GoMenu()
     {
         SceneManager.LoadScene("Menu");
     }
+
 }

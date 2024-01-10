@@ -42,10 +42,11 @@ public class PlayerMovement : MonoBehaviour
     public void InputPlayer(InputAction.CallbackContext context)
     {
         moveVector = context.ReadValue<Vector2>();
+
     }
     private void FixedUpdate()
     {
-        if (isMove)
+        if (isMove && !GameManager.Instance.isLose && !GameManager.Instance.isVote)
         {
             moveVectorJoystick = new Vector2(UltimateJoystick.GetHorizontalAxis("joystick"), UltimateJoystick.GetVerticalAxis("joystick")) * moveSpeed;
             if (Input.GetButton("Horizontal"))
@@ -68,6 +69,10 @@ public class PlayerMovement : MonoBehaviour
             }
             //Music
             StartCoroutine(DelayAnim());
+        }
+        else
+        {
+            SoundManager.Stop("Run");
         }
     }
     IEnumerator DelayAnim()

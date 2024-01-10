@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCollider : MonoBehaviour
 {
+    [SerializeField] LayerMask barrierLayer;
     PlayerKillController playerKillController;
     PlayerMovement playerMovement;
     private void Awake()
@@ -27,7 +29,10 @@ public class PlayerCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "enemy")
         {
-            playerKillController.EnableKilling(collision.GetComponent<PlayerKillDetector>());
+            if (!CheckBlock(collision.transform.transform)) {
+                //Debug.Log(collision.name);
+                playerKillController.EnableKilling(collision.GetComponent<PlayerKillDetector>());
+            }
         }
         
     }
@@ -44,5 +49,14 @@ public class PlayerCollider : MonoBehaviour
         {
             playerKillController.DisableKilling();
         }
+    }
+    bool CheckBlock(Transform target)
+    {
+        Vector3 direction = target.position - transform.position;
+        if (!Physics2D.Raycast(transform.position, direction, Vector3.Distance(transform.position, target.position), barrierLayer))
+        {
+            return false;
+        }
+        return true;
     }
 }
